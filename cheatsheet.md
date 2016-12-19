@@ -4,5 +4,5 @@
 
 Name | Syntax | Desc
 -------|-------|---------
-mov | <dest>, <src> | 
+mov | %dest, %src | -
 nop | | No Operation
