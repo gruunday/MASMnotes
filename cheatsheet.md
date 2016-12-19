@@ -73,15 +73,59 @@ jle | <= | signed | ZF = 1 pr SF not = OF
    c   DWORD   5 DUP (0) # Same as [0,0,0,0,0]
    d   DWORD   5 DUP (0,1,2) # Same as [0,1,2,0,1,2...]
 ```
-* Constants
+
+### Array Functions
+```assembly
+   writeArray           (ADDR, length)
+   fillWithRandomValue  (ADDR, length, max random value)
 ```
+* Examples
+```assembly
+   invoke writeArray, ADDR ARRAY, 20
+   invoke fillWithRandomValues, ADDR ARRAY, 20, 50
+```
+### Constants
+```assembly
    N       EQU     10
    Last    EQU     N-1
 ```
-* Manipulating Addresses
+### Manipulating Addresses
 ```assembly
-mov <dst>, offset <src> ; offset treats the src as an address of another value
-add <dst>, offset <src>
+   mov <dst>, offset <src> ; offset treats the src as an address of another value
+   add <dst>, offset <src>
 
-lea <dst>, <src> ; store the offset of memory in specified register
+   lea <dst>, <src> ; store the offset of memory in specified register
+```
+### Derefrencing Addresses
+```assembly
+   mov <dst>, [src] ; treated as an address
+   add <dst>, [src]
+```
+### Allocate & Release  <-- Dynamic 
+
+Name | Library | Parameter | Memory Allocation
+--------|--------|----------|-------------
+allocate | CA296 | size in bytes | address of memory allocated in eax
+release | CA296 | memory address | -
+blockSize | CA296 | memory address | size of block in eax
+memoryStatus | CA296 | - | - 
+
+### Stack Instructions (Operations)
+```assembly
+   push <src>   ;pushes a 32-bit word into the stack
+   pop  <dst>   ;pops a 32-bit word from the stack
+```
+
+### Function Procedures and Subroutines
+
+Name | Parameter | Description
+-----|----------|------------
+call | %label | executes the subroutine at %label
+ret | - | returns from a subroutine
+ret | %n | returns from a subroutine & adds n to ESP
+leave | - | -
+
+### Functions in different files
+```assembly
+   EXTERNDEF    hello:near  ; place beofre .data
 ```
