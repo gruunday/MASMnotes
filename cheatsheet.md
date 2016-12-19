@@ -77,4 +77,9 @@ jle | <= | signed | ZF = 1 pr SF not = OF
   * Last    EQU     N-1
 
 * Manipulating Addresses
+```assembly
+mov <dst>, offset <src> ; offset treats the src as an address of another value
+add <dst>, offset <src>
 
+lea <dst>, <src> ; store the offset of memory in specified register
+```
