@@ -67,15 +67,17 @@ jle | <= | signed | ZF = 1 pr SF not = OF
 ### Arrays 
 
 * Types
-  * a   DWORD   0
-  * b   DWORD   0,0,0,0,0
-  * c   DWORD   5 DUP (0) # Same as [0,0,0,0,0]
-  * d   DWORD   5 DUP (0,1,2) # Same as [0,1,2,0,1,2...]
-
+```assembly
+   a   DWORD   0
+   b   DWORD   0,0,0,0,0
+   c   DWORD   5 DUP (0) # Same as [0,0,0,0,0]
+   d   DWORD   5 DUP (0,1,2) # Same as [0,1,2,0,1,2...]
+```
 * Constants
-  * N       EQU     10
-  * Last    EQU     N-1
-
+```
+   N       EQU     10
+   Last    EQU     N-1
+```
 * Manipulating Addresses
 ```assembly
 mov <dst>, offset <src> ; offset treats the src as an address of another value
