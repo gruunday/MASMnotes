@@ -38,6 +38,24 @@ A | B | A&B | A¦B | A^B | ¬A
 1 | 0 | 0 | 1 | 1 | 0
 1 | 1 | 1 | 1 | 0 | 0 
 
+
+### Types of text
+1. Preamble - target platform - (32-bit)
+  * Include useful libraries
+2. Data selection - allows allocation of memory
+  * Labels for addresses of some of these bytes
+3. Code selection - write instructions
+  * Labels for the addresses of these instructions
+* Don't say type
+* Specify number of bytes
+  * 1 byte byte db
+  * 2 byte word dw
+  * 4 byte dword dd
+
+* sbyte, sword & sdword when signed integers
+  * No difference to code just helps to read
+  * Visual Studio make use of this
+
 ### Instructions
 
 Name | Syntax | Desc
@@ -102,6 +120,22 @@ jge | >= | signed | SF = OF
 jl | < | signed | SF not = OF
 jle | <= | signed | ZF = 1 pr SF not = OF
 
+### Addressing Modes
+* Direct Addressing
+  * Embed into structure
+  * Fixed when assembled
+* Register Indirect
+  * Derefrence address to get address in memory --> [eax]
+
+* *Don't get confused between the address of the memory and data in that memory*
+
+* Direct    mov eax, %label
+* Indirect  mov eax, offffh
+
+```assembly
+mov eax, offest y   ; Address of y into eax, not y into eax
+mov ebx, [eax]      ; Fot to address stored in eax and put the value into ebx
+```
 ### Arrays 
 
 * Types
