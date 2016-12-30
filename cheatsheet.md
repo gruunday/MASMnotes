@@ -1,5 +1,43 @@
 ## Masm Cheatsheet
 
+### Computer Hardware
+* Main Memory (or simply memory)
+  * An array of bytes
+  * Each byte has 8 bits - how they are interpreted depends how we use them
+  * Each byte has an address
+
+* CPU (Central Processing Unit)
+  * Hardware to perform computations - add subtract multiply
+  * Set of registers - hold values during computations
+
+* Periphearls (Input/Output)
+  * keyboard, screen, disk, DVD, Network Connection
+
+### Computer Operation
+* There are 2 types of information in memory
+  1. Machine Code - instructions to be executed by the computer
+  2. Data - data which is manipulated when a prgram is executed
+
+* The PC
+  * The process repeatedly exectues machine code
+    1. Fetch the instruction
+    2. Increment the Program Counter
+    3. Perform the operation specified by the instruction
+
+Operatior | Syombol 1 | Syombol 2
+----------|----------|-----------
+AND | & | ^
+OR | '|' | ᵛ
+XOR | ^ | 
+NOT | ! | ¬
+
+A | B | A&B | A|B | A^B | ¬A
+---|-----|------|------|------|---------
+0 | 0 | 0 | 0 | 0 | 1
+0 | 1 | 0 | 1 | 1 | 1
+1 | 0 | 0 | 1 | 1 | 0
+1 | 1 | 1 | 1 | 0 | 0 
+
 ### Instructions
 
 Name | Syntax | Desc
