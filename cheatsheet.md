@@ -129,13 +129,16 @@ jle | <= | signed | ZF = 1 pr SF not = OF
 
 * *Don't get confused between the address of the memory and data in that memory*
 
-* Direct    mov eax, %label
-* Indirect  mov eax, offffh
+```assembly
+  mov eax, %label   ; Direct
+  mov eax, offffh   ; Indirect
+```
 
 ```assembly
 mov eax, offest y   ; Address of y into eax, not y into eax
-mov ebx, [eax]      ; Fot to address stored in eax and put the value into ebx
+mov ebx, [eax]      ; Go to address stored in eax and put the value into ebx
 ```
+
 ### Arrays 
 
 * Types
@@ -157,6 +160,8 @@ mov ebx, [eax]      ; Fot to address stored in eax and put the value into ebx
    invoke fillWithRandomValues, ADDR ARRAY, 20, 50
 ```
 ### Constants
+
+* These are expressions that are evaluated at assembly time
 ```assembly
    N       EQU     10
    Last    EQU     N-1
@@ -187,6 +192,41 @@ memoryStatus | CA296 | - | -
    push <src>   ;pushes a 32-bit word into the stack
    pop  <dst>   ;pops a 32-bit word from the stack
 ```
+
+```assembly
+mov eax, [esp+4]        ; here was are going to eax so we know that it is a 32 bit word
+add eax, [esp+8]
+
+invoke crt_prinf,addr output_msg, DWORD PTR [esp+4], DWORD PTR [esp+8], eax   ; here we have no idea what type or size it is there for we have to tell it we are looking for a DWORD
+
+ret 8   ; 8 bits beyond what the return address was ment to be. Used to take things off the stack
+```
+
+#### *Why use a stack?*
+* It is more efficient in memory
+* To allow the use of recursion
+
+
+### Call by value (parameters)
+```c
+void output (int x, int y){
+    printf("%d + %d = %d, x, y, x+y)
+}
+```
+* Note: *We push values on from right to left*
+* We push on y then we push on x
+
+```assembly
+push y
+push x
+call func
+``` 
+
+### Call by refrence
+* Call by value will take the two values and pass them to the function but the function cannot change them.
+* With call by refrence we pass the addresses of the values.
+* With this we can chanage or swap the parameters
+
 
 ### Function Procedures and Subroutines
 
